@@ -4,7 +4,7 @@ describe Travis::Github::Services::SyncUser::Repository do
   include Support::ActiveRecord
 
   let(:user)    { Factory(:user) }
-  let(:hooks)   { [ { 'name' => 'travis', 'active' => true } ] }
+  let(:hooks)   { [ { 'name' => 'travis', 'active' => true, 'domain' => '' } ] }
   let(:run)     { lambda { described_class.new(user, repo, hooks).run } }
 
   describe 'find or create repository' do

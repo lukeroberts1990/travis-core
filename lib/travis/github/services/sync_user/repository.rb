@@ -107,7 +107,13 @@ module Travis
             end
 
             def hook_active?
-              hooks.select { |hook| hook['name'] == 'travis' }.any? { |hook| hook['active'] }
+              hooks
+                .select { |hook| hook['name'] == 'travis' && hook['domain'] == hook_domain }
+                .any?   { |hook| hook['active'] }
+            end
+
+            def hook_domain
+              Travis.config.service_hook_url || ''
             end
         end
       end
